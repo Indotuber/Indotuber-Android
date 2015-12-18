@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
+    android:id="@+id/mainRootFrameLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,33 +8,54 @@
     android:background="@android:color/white"
     tools:context=".viewcontroller.MainActivity">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="350dp"
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="300dp"
         android:layout_height="350dp"
-        android:layout_gravity="center"
-        app:rotation_degrees="16"
-        app:max_visible="4" />
+        android:orientation="vertical"
+        android:layout_gravity="top|center"
+        android:background="@drawable/black_border"
+        >
+        <TextView
+            android:id="@+id/item_video_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:text="TITLE"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        <WebView
+            android:id="@+id/item_video_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/item_video_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:text="Description"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="100dp"
+        android:text="Next"/>
 </FrameLayout>
-
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp"-->
+    <!--<com.lorentzos.flingswipe.SwipeFlingAdapterView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="350dp"-->
+    <!--android:layout_height="350dp"-->
     <!--android:layout_gravity="center"-->
-    <!--android:layout_marginBottom="50dp"-->
-
-    <!-->-->
-    <!--<WebView-->
-    <!--android:id="@+id/videoWebView"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"></WebView>-->
-    <!--</FrameLayout>-->
-
-    <!--<Button-->
-    <!--android:id="@+id/nextButton"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:layout_gravity="bottom|center"-->
-    <!--android:layout_marginBottom="100dp"-->
-    <!--android:text="Next"/>-->
+    <!--app:rotation_degrees="16"-->
+    <!--app:max_visible="4" />-->
