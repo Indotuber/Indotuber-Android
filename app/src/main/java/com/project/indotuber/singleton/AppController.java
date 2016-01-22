@@ -31,6 +31,9 @@ public class AppController extends Application {
         return mInstance;
     }
 
+    public String getYoutubeAPI(){
+        return YOUTUBE_API;
+    }
     public static Context getAppContext() {
         return AppController.context;
     }
