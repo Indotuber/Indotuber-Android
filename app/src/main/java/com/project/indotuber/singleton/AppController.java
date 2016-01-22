@@ -15,6 +15,8 @@ import java.util.Calendar;
 public class AppController extends Application {
     private static AppController mInstance;
     private static Context context;
+    String PROJECT_NUMBER = "853512883569";
+    String YOUTUBE_API = "AIzaSyAgNXbVcQpjGJzhiZhTKZYS1ZJcyoydupY";
     @Override
     public void onCreate(){
         super.onCreate();
