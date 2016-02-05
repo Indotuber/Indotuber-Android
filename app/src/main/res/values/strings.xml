@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">Indotuber</string>
     <string name="ipsum">Lorem ipsum dolor sit amet, vel ut autem patrioque instructior, modo nonumes vis ei. Pri an altera cetero corrumpit, his unum erat ridens ei. Dolores conclusionemque vel ne, te fugit suavitate mei. Te assum minim altera nec, dictas melius appareat vim et. Id commodo platonem intellegam sed. Te utinam fabellas est, viris alterum ut pri, harum corpora principes his at.
 
