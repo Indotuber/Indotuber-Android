@@ -14,16 +14,9 @@ public class Video extends RealmObject {
     private String videoId;
 
     private String videoShareUrl;
-    private String title;
-    private String description;
-
-
-    private String channelId;
-    private String channelTitle;
-    private String channelName;
-    private String channelPic;
-    private String indotuberChannelId;
-
+    private String videoTitle;
+    private String videoDescription;
+    private Channel channel;
 
     public Video(){
 
@@ -33,13 +26,9 @@ public class Video extends RealmObject {
         try {
             setVideoId(object.getString("videoId"));
             setVideoShareUrl(object.getString("videoShareUrl"));
-            setTitle(object.getString("title"));
-            setDescription(object.getString("description"));
-            setChannelId(object.getString("channelId"));
-            setChannelTitle(object.getString("channelTitle"));
-            setChannelName(object.getString("channelName"));
-            setChannelPic(object.getString("channelPic"));
-            setIndotuberChannelId(object.getString("indotuberChannelId"));
+            setVideoTitle(object.getString("videoTitle"));
+            setVideoDescription(object.getString("videoDescription"));
+            setChannel(new Channel(object.getJSONObject("channel")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -61,59 +50,27 @@ public class Video extends RealmObject {
         this.videoShareUrl = videoShareUrl;
     }
 
-    public String getTitle() {
-        return title;
+    public String getVideoTitle() {
+        return videoTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setVideoTitle(String videoTitle) {
+        this.videoTitle = videoTitle;
     }
 
-    public String getDescription() {
-        return description;
+    public String getVideoDescription() {
+        return videoDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setVideoDescription(String videoDescription) {
+        this.videoDescription = videoDescription;
     }
 
-    public String getChannelId() {
-        return channelId;
+    public Channel getChannel() {
+        return channel;
     }
 
-    public void setChannelId(String channelId) {
-        this.channelId = channelId;
-    }
-
-    public String getChannelTitle() {
-        return channelTitle;
-    }
-
-    public void setChannelTitle(String channelTitle) {
-        this.channelTitle = channelTitle;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
-    }
-
-    public String getChannelPic() {
-        return channelPic;
-    }
-
-    public void setChannelPic(String channelPic) {
-        this.channelPic = channelPic;
-    }
-
-    public String getIndotuberChannelId() {
-        return indotuberChannelId;
-    }
-
-    public void setIndotuberChannelId(String indotuberChannelId) {
-        this.indotuberChannelId = indotuberChannelId;
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 }

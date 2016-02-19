@@ -10,6 +10,8 @@ import android.content.Intent;
 import java.util.Calendar;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.exceptions.RealmMigrationNeededException;
 
 /**
  * Created by yoasfs on 8/3/15.
@@ -24,8 +26,9 @@ public class AppController extends Application {
     public void onCreate(){
         super.onCreate();
         mInstance = this;
-        realm = Realm.getInstance(this);
         AppController.context = getApplicationContext();
+        buildDatabase();
+        realm = Realm.getInstance(this);
     }
     public static synchronized AppController getInstance() {
         if(mInstance==null){
@@ -38,7 +41,22 @@ public class AppController extends Application {
     public Realm getRealm(){
         return realm;
     }
+    public Realm buildDatabase(){
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
 
+        try {
+            return Realm.getInstance(realmConfiguration);
+        } catch (RealmMigrationNeededException e){
+            try {
+                Realm.deleteRealm(realmConfiguration);
+                //Realm file has been deleted.
+                return Realm.getInstance(realmConfiguration);
+            } catch (Exception ex){
+                throw ex;
+                //No Realm file to remove.
+            }
+        }
+    }
     public String getYoutubeAPI(){
         return YOUTUBE_API;
     }

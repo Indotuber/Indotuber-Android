@@ -104,8 +104,16 @@ public class ServerManager {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        VideoResponse videoResponse = new VideoResponse(response);
-                        EventBus.getDefault().post(new GetRandomVideoFinishEvent(videoResponse,""));
+                        try {
+                            if (response.getBoolean("success")) {
+                                VideoResponse videoResponse = new VideoResponse(response);
+                                EventBus.getDefault().post(new GetRandomVideoFinishEvent(videoResponse, ""));
+                            } else {
+                                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, response.getString("error")));
+                            }
+                        }catch (Exception e){
+                            EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, e.getLocalizedMessage()));
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -20,8 +20,12 @@ public class VideoResponse extends RealmObject {
     }
 
     public VideoResponse(JSONObject object){
-        setId(0+"");
-        setVideo(new Video(object));
+        setId(0 + "");
+        try {
+            setVideo(new Video(object.getJSONObject("video")));
+        }catch (Exception e){
+
+        }
     }
 
     public String getId() {
