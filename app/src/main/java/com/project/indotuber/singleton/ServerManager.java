@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.project.indotuber.event.GetRandomVideoFinishEvent;
+import com.project.indotuber.event.ShowSpinningLoadingEvent;
 import com.project.indotuber.model.Video;
 import com.project.indotuber.model.response.VideoResponse;
 
@@ -97,6 +98,7 @@ public class ServerManager {
     }
 
     public void getRandomVideo(){
+        EventBus.getDefault().post(new ShowSpinningLoadingEvent());
         Calendar c = Calendar.getInstance();
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,

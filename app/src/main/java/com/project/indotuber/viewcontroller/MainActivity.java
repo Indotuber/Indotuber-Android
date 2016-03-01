@@ -1,8 +1,11 @@
 package com.project.indotuber.viewcontroller;
 
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -13,31 +16,49 @@ import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.project.indotuber.R;
+import com.project.indotuber.event.HideSpinningLoadingEvent;
+import com.project.indotuber.event.ShowSpinningLoadingEvent;
+import com.project.indotuber.singleton.InterfaceManager;
 import com.project.indotuber.viewcontroller.mainView.MainPageFragment;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     FragmentManager fm;
     NavigationView navigationView;
+    FrameLayout rootFrameLayout;
     Toolbar toolbar;
+    Context ctx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        rootFrameLayout = (FrameLayout)findViewById(R.id.rootMainFrameLayout);
+        ctx = this;
         fm = getSupportFragmentManager();
         fm.beginTransaction()
                 .replace(R.id.mainContainer,new MainPageFragment())
                 .commitAllowingStateLoss();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#555555"));
+        }
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         setSupportActionBar(toolbar);
         fm = getSupportFragmentManager();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -72,6 +93,13 @@ public class MainActivity extends AppCompatActivity
         } catch (NoSuchAlgorithmException e) {
 
         }
+    }
+    public void onEvent(ShowSpinningLoadingEvent event){
+        InterfaceManager.sharedInstance().showLoading(rootFrameLayout,ctx);
+    }
+
+    public void onEvent(HideSpinningLoadingEvent event){
+        InterfaceManager.sharedInstance().hideLoading();
     }
 
 

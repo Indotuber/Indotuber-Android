@@ -1,13 +1,18 @@
 package com.project.indotuber.viewcontroller.mainView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -17,6 +22,7 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.project.indotuber.R;
 import com.project.indotuber.event.GetRandomVideoFinishEvent;
+import com.project.indotuber.event.HideSpinningLoadingEvent;
 import com.project.indotuber.fonts.MontserratBoldTextView;
 import com.project.indotuber.fonts.UbuntuRegulerTextView;
 import com.project.indotuber.model.Video;
@@ -38,7 +44,7 @@ public  class MainPageFragment extends Fragment {
     MontserratBoldTextView creatorName, videoTitle;
     UbuntuRegulerTextView videoDescriptionTextView;
     YouTubePlayerSupportFragment youTubePlayerFragment;
-    FrameLayout nextFrameLayoutButton,shareFrameLayoutButton;
+    Button nextFrameLayoutButton,shareFrameLayoutButton;
     YouTubePlayer youTubePlayer;
     String shareUrl;
 
@@ -55,9 +61,9 @@ public  class MainPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         EventBus.getDefault().register(this);
         realm = AppController.getInstance().getRealm();
-        nextFrameLayoutButton = (FrameLayout)view.findViewById(R.id.mainActivity_nextButton);
+        nextFrameLayoutButton = (Button)view.findViewById(R.id.mainActivity_nextButton);
         videoTitle = (MontserratBoldTextView)view.findViewById(R.id.mainActivity_videoTitle);
-        shareFrameLayoutButton = (FrameLayout)view.findViewById(R.id.mainActivity_shareButton);
+        shareFrameLayoutButton = (Button)view.findViewById(R.id.mainActivity_shareButton);
         creatorCircleImageView = (CircleImageView)view.findViewById(R.id.profile_image);
         creatorName = (MontserratBoldTextView)view.findViewById(R.id.mainActivity_creatorTextView);
         videoDescriptionTextView = (UbuntuRegulerTextView)view.findViewById(R.id.mainActivity_videoDescriptionTextView);
@@ -74,6 +80,46 @@ public  class MainPageFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Ubuntu-Regular.ttf");
+        nextFrameLayoutButton.setTypeface(font);
+        shareFrameLayoutButton.setTypeface(font);
+        nextFrameLayoutButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:{
+                        v.getBackground().setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break; }
+                    case MotionEvent.ACTION_UP:{
+                        v.getBackground().clearColorFilter();
+                        v.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+        shareFrameLayoutButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:{
+                        v.getBackground().setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.SRC_ATOP);
+                        v.invalidate();
+                        break;
+//                        shareFrameLayoutButton.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.gray_button_pressed));
+                    }
+                    case MotionEvent.ACTION_UP:{
+//                        shareFrameLayoutButton.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.pink_share));
+                        v.getBackground().clearColorFilter();
+                        v.invalidate();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
         youTubePlayerFragment.initialize(AppController.getInstance().getYoutubeAPI(), new YouTubePlayer.OnInitializedListener() {
 
             // YouTubeプレーヤーの初期化成功
@@ -173,9 +219,10 @@ public  class MainPageFragment extends Fragment {
         if(event.errMessage.equals("")){
             currentVideo = event.videoResponse.getVideo();
             initView();
-            Log.v("video",currentVideo.getVideoId());
+            Log.v("video", currentVideo.getVideoId());
             youTubePlayer.loadVideo(currentVideo.getVideoId());
             youTubePlayer.play();
+            EventBus.getDefault().post(new HideSpinningLoadingEvent());
         }else {
             Toast.makeText(getActivity(),event.errMessage,Toast.LENGTH_LONG).show();
         }

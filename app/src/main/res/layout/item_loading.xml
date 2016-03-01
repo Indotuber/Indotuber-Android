@@ -9,8 +9,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:alpha="0.50"/>
+        android:background="#66000000"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,15 +22,25 @@
         android:id="@+id/invisibleEditText"
         />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00000000">
 
-        <ProgressBar
+        <ImageView
+            android:id="@+id/loading_spinningIcon"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:src="@drawable/idtuber_icon"/>
+        <com.project.indotuber.fonts.MontserratBoldTextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"/>
-    </FrameLayout>
+            android:layout_height="20dp"
+            android:layout_marginTop="7dp"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:text="LOADING ..."/>
+    </LinearLayout>
 </FrameLayout>

@@ -36,7 +36,8 @@
                         android:layout_marginTop="15dp"
                         android:layout_height="wrap_content" />
                     <FrameLayout
-                        android:id="@+id/mainActivity_nextButton"
+                        android:visibility="gone"
+                        android:id="@+id/mainActivity_nextButtonFrameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="15dp"
@@ -48,8 +49,17 @@
                             android:textColor="@android:color/white"
                             android:text="SELANJUTNYA"/>
                     </FrameLayout>
+                    <Button
+                        android:id="@+id/mainActivity_nextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/pink_next"
+                        android:text="SELANJUTNYA"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@android:color/white"/>
                     <FrameLayout
-                        android:id="@+id/mainActivity_shareButton"
+                        android:visibility="gone"
+                        android:id="@+id/mainActivity_shareButtonFrameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
@@ -61,6 +71,14 @@
                             android:textColor="@android:color/white"
                             android:text="SHARE "/>
                     </FrameLayout>
+                    <Button
+                        android:id="@+id/mainActivity_shareButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/pink_share"
+                        android:text="SHARE"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@android:color/white"/>
                     <LinearLayout
                         android:id="@+id/mainActivity_authorLayout"
                         android:layout_width="match_parent"

@@ -14,8 +14,11 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.project.indotuber.R;
@@ -80,17 +83,22 @@ public class InterfaceManager {
     public void showLoading(FrameLayout rootFrameLayout,Context context){
         LayoutInflater inflater = (LayoutInflater)   context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         loadingFrameLayout = inflater.inflate(R.layout.item_loading, null);
-        ProgressBar progressBar = (ProgressBar)loadingFrameLayout.findViewById(R.id.progressBar);
-        progressBar.getIndeterminateDrawable().setColorFilter(Color.parseColor("#B14BA9"), PorterDuff.Mode.SRC_ATOP);
+        ImageView spinningImageView = (ImageView)loadingFrameLayout.findViewById(R.id.loading_spinningIcon);
+        RotateAnimation rotateAnimation = new RotateAnimation(0,359, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnimation.setRepeatCount(Animation.INFINITE);
+        rotateAnimation.setDuration(1000);
+        spinningImageView.setAnimation(rotateAnimation);
+        rotateAnimation.start();
+
         rootFrameLayout.addView(loadingFrameLayout);
         loadingFrameLayout.setVisibility(View.VISIBLE);
-        invisibleEditText = (EditText)loadingFrameLayout.findViewById(R.id.invisibleEditText);
-        invisibleEditText.requestFocus();
+        loadingFrameLayout.setEnabled(true);
     }
 
     public void hideLoading( ){
         if(loadingFrameLayout!=null){
             loadingFrameLayout.setVisibility(View.GONE);
+            loadingFrameLayout.setEnabled(false);
         }
     }
 
