@@ -1,8 +1,10 @@
 package com.project.indotuber.model;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -17,6 +19,8 @@ public class Video extends RealmObject {
     private String videoTitle;
     private String videoDescription;
     private Channel channel;
+    private RealmList<OtherVideo> otherVideos;
+
 
     public Video(){
 
@@ -29,6 +33,16 @@ public class Video extends RealmObject {
             setVideoTitle(object.getString("videoTitle"));
             setVideoDescription(object.getString("videoDescription"));
             setChannel(new Channel(object.getJSONObject("channel")));
+            if(object.getJSONArray("otherVideos")!=null){
+                JSONArray otherVideosJSONArray = object.getJSONArray("otherVideos");
+                RealmList<OtherVideo> otherVideoRealmList = new RealmList<>();
+                for(int i = 0;i<otherVideosJSONArray.length();i++){
+                    JSONObject theOtherVideoJSONObject = otherVideosJSONArray.getJSONObject(i);
+                    OtherVideo theOtherVideo = new OtherVideo(theOtherVideoJSONObject);
+                    otherVideoRealmList.add(theOtherVideo);
+                }
+                setOtherVideos(otherVideoRealmList);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -72,5 +86,13 @@ public class Video extends RealmObject {
 
     public void setChannel(Channel channel) {
         this.channel = channel;
+    }
+
+    public RealmList<OtherVideo> getOtherVideos() {
+        return otherVideos;
+    }
+
+    public void setOtherVideos(RealmList<OtherVideo> otherVideos) {
+        this.otherVideos = otherVideos;
     }
 }

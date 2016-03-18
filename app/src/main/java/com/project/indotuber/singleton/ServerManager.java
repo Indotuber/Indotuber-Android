@@ -35,7 +35,7 @@ public class ServerManager {
     private static ServerManager SERVERMANAGER = null;
     boolean isSuccess = false;
 //    String url = "http://10.0.1.18:8080/api/";//ko mike
-    String url = "http://idtuber.com/api/";
+    String url = "https://idtuber.com/api/";
     private RequestQueue mRequestQueue;
     public static final String TAG = ServerManager.class.getSimpleName();
     public static ServerManager getInstance() {
@@ -124,6 +124,36 @@ public class ServerManager {
             }
         });
         addToRequestQueue(request,"getRandomVideo");
+
+    }
+
+    public void getRandomVideoByCode(String videoId){
+        EventBus.getDefault().post(new ShowSpinningLoadingEvent());
+        Calendar c = Calendar.getInstance();
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                ServerManager.getInstance().getURL() + "get-random-video?videoId="+videoId,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getBoolean("success")) {
+                                VideoResponse videoResponse = new VideoResponse(response);
+                                EventBus.getDefault().post(new GetRandomVideoFinishEvent(videoResponse, ""));
+                            } else {
+                                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, response.getString("error")));
+                            }
+                        }catch (Exception e){
+                            EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, e.getLocalizedMessage()));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null,error.getMessage()));
+            }
+        });
+        addToRequestQueue(request,"getRandomVideoById");
 
     }
 

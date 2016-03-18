@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <ScrollView
+            android:id="@+id/mainActivity_scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -155,7 +155,7 @@
 
                     <com.project.indotuber.fonts.MontserratBoldTextView
                         android:text="Video Lainnya"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:textSize="16sp"
                         android:layout_marginTop="20dp"
                         android:textColor="#e6567a"
@@ -163,10 +163,18 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:ellipsize="end"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/mainActivity_otherVideoRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollingCache="false"
+                        android:animationCache="false">
+
+                    </android.support.v7.widget.RecyclerView>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </FrameLayout>
         </ScrollView>
     </LinearLayout>
 
