@@ -50,7 +50,7 @@ public class OtherVideoCardAdapter extends RecyclerView.Adapter<OtherVideoCardAd
         final OtherVideo otherVideo = otherVideoRealmList.get(position);
         Glide.with(ctx).load(otherVideo.getVideoThumbnailURL()).into(holder.otherVideoThumbnail);
         holder.otherVideoTitle.setText(otherVideo.getVideoTitle());
-
+        holder.otherVideoCreatorName.setText(otherVideo.getChannelName());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,14 +68,16 @@ public class OtherVideoCardAdapter extends RecyclerView.Adapter<OtherVideoCardAd
     public class Holder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView otherVideoThumbnail;
-        MontserratBoldTextView otherVideoTitle;
+        MontserratBoldTextView otherVideoCreatorName;
+        UbuntuRegulerTextView otherVideoTitle;
         LinearLayout layout;
         public Holder(View itemView) {
             super(itemView);
             cardView = (CardView)itemView.findViewById(R.id.card_view);
             layout = (LinearLayout)itemView.findViewById(R.id.otherVideoCard_layout);
             otherVideoThumbnail = (ImageView)itemView.findViewById(R.id.otherVideoCard_videoThumbnail);
-            otherVideoTitle = (MontserratBoldTextView)itemView.findViewById(R.id.otherVideoCard_videoTitle);
+            otherVideoCreatorName = (MontserratBoldTextView)itemView.findViewById(R.id.otherVideoCard_videoChannelName);
+            otherVideoTitle = (UbuntuRegulerTextView)itemView.findViewById(R.id.otherVideoCard_videoTitle);
         }
 
     }

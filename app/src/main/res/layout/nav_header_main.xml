@@ -12,5 +12,4 @@
         android:scaleType="fitCenter"
         android:background="@mipmap/bg_nav_header"/>
 
-
 </LinearLayout>

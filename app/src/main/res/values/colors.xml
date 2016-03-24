@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#eeeeee</color>
-    <color name="colorPrimaryDark">#eeeeee</color>
-    <color name="colorAccent">#eeeeee</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#ffffff</color>
 
     <color name="selanjutnyaButtonColor">#db466b</color>
     <color name="shareButtonColor">#f96c48</color>

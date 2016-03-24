@@ -5,13 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:background="@android:color/white"
+    android:layout_height="110dp"
+    android:background="#f5f5f5"
     app:cardUseCompatPadding="true">
 
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:background="#f5f5f5"
         android:id="@+id/otherVideoCard_layout"
         >
         <ImageView
@@ -24,15 +25,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
             <com.project.indotuber.fonts.MontserratBoldTextView
-                android:id="@+id/otherVideoCard_videoTitle"
+                android:id="@+id/otherVideoCard_videoChannelName"
 
                 android:textSize="16sp"
-                android:textColor="#000000"
+                android:layout_marginTop="15dp"
+                android:textColor="#db466b"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
+                android:layout_height="wrap_content"
+                android:gravity="left|top"
+                android:maxLines="1"
                 android:text="asd"
                 android:ellipsize="end"/>
+            <com.project.indotuber.fonts.UbuntuRegulerTextView
+                android:id="@+id/otherVideoCard_videoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#727272"
+                android:layout_marginTop="5dp"
+                android:text="tes String"
+                android:maxLines="3"
+                android:ellipsize="end"
+                />
+
 
         </LinearLayout>
     </LinearLayout>

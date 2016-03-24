@@ -235,7 +235,7 @@ public  class MainPageFragment extends Fragment {
         }
         videoDescriptionTextView.setText(currentVideo.getVideoDescription());
         shareUrl = currentVideo.getVideoShareUrl();
-        recyclerView.getLayoutParams().height = (currentVideo.getOtherVideos().size() * InterfaceManager.sharedInstance().dpToPx(getActivity(), 125));
+        recyclerView.getLayoutParams().height = (currentVideo.getOtherVideos().size() * InterfaceManager.sharedInstance().dpToPx(getActivity(), 115));
         adapter.updateAdapter(currentVideo.getOtherVideos());
     }
     public void onEvent(GetRandomVideoFinishEvent event){

@@ -14,6 +14,7 @@ public class OtherVideo extends RealmObject {
     private String videoId;
     private String videoTitle;
     private String videoThumbnailURL;
+    private String channelName;
 
     public OtherVideo(){
 
@@ -23,7 +24,8 @@ public class OtherVideo extends RealmObject {
         try {
             setVideoId(object.getString("videoId"));
             setVideoTitle(object.getString("videoTitle"));
-            setVideoThumbnailURL("https://img.youtube.com/vi/"+object.getString("videoId")+"/1.jpg ");
+            setVideoThumbnailURL("http://img.youtube.com/vi/"+object.getString("videoId")+"/mqdefault.jpg");
+            setChannelName(object.getString("channelName"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -51,5 +53,13 @@ public class OtherVideo extends RealmObject {
 
     public void setVideoThumbnailURL(String videoThumbnailURL) {
         this.videoThumbnailURL = videoThumbnailURL;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }
