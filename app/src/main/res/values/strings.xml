@@ -3,13 +3,78 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">IDTUBER</string>
-    <string name="ipsum">Lorem ipsum dolor sit amet, vel ut autem patrioque instructior, modo nonumes vis ei. Pri an altera cetero corrumpit, his unum erat ridens ei. Dolores conclusionemque vel ne, te fugit suavitate mei. Te assum minim altera nec, dictas melius appareat vim et. Id commodo platonem intellegam sed. Te utinam fabellas est, viris alterum ut pri, harum corpora principes his at.
+    <string name="faq_title">Malu Bertanya Sesat Dijalan</string>
+    <string name="faq_subTitle">Kami menjabarkan beberapa pertanyaan yang mungkin bisa membuat kamu mengenal IDTUBER lebih dekat</string>
+    <string name="faq_question_1">1. Apa itu IDTUBER ?</string>
+    <string name="faq_answer_1">IDTUBER adalah wadah yang dibuat untuk videografer, editor, animator, dan semua kreator video di seluruh Indonesia.</string>
+    <string name="faq_question_2">2. Apa bedanya IDTUBER dengan Youtube ?</string>
+    <string name="faq_answer_2">Kami fokus terhadap konten Indonesia dan kami menghargai kreator video asli. Kami juga akan berusaha keras untuk menjaga konten kami bersih dari hal - hal negatif (SARA, Pornografi dan hal negatif lainnya) dengan adanya sistem kurasi pada IDTUBER. Sistem random kami juga akan membuat video kamu memiliki kesempatan yang sama untuk dilihat oleh penonton.</string>
 
-Pri percipit tincidunt an, no dico fabulas reformidans sed, an aliquid eloquentiam sea. Cu mea legere feugait persecuti, mea mutat nihil atomorum te, luptatum similique cum te. Tempor pertinax ei eos, te est modo inciderint. Per quem nemore complectitur ut. Id quem scripta eos. Mei electram iudicabit cu. Mel legere aeterno commune ne, nam et labitur nominavi adipiscing.
+    <string name="faq_question_3">3. Video saya sudah tersedia di Youtube, apakah harus upload video yang sama di IDTUBER ?</string>
+    <string name="faq_answer_3">Tentu saja tidak, IDTUBER menggunakan embed video dari Youtube. Hal ini menjaga kamu tetap mendapat penghasilan dari video Youtube, dan membantu kami memverifikasi bahwa kamu benar pemilik video asli tersebut.</string>
+    <string name="faq_question_4">4. Bagaimana sistem random dapat membantu kreator video ?</string>
+    <string name="faq_answer_4">Semakin banyak penonton maka video kamu akan memiliki kesempatan yang besar untuk diapresiasi. Oleh karena itu, kami melakukan sistem kurasi untuk menjaga konten video tetap bersih dan nyaman untuk dinikmati.</string>
+    <string name="faq_question_5">5. Apa itu sistem kurasi ?</string>
+    <string name="faq_answer_5">Video yang masuk ke IDTUBER, sebelumnya harus melalui tahap kurasi. Yaitu tahap dimana kami memilih video mana yang berhak muncul di IDTUBER atau tidak.</string>
+    <string name="faq_question_6">6. Seberapa kredibel IDTUBER dalam menilai video ?</string>
+    <string name="faq_answer_6">Kami tidak menilai isi konten dalam menentukan apakah video layak tayang atau tidak. Beberapa hal yang kami nilai dalam menentukan video yang layak atau tidak adalah :
+\n\u2022  Video tidak bermuatan konten negatif
+\n\u2022  Video asli buatan anak Indonesia
+\n\u2022  Orang yang mengupload adalah kreator asli video tersebut
+\n\u2022  Video memiliki minimal kualitas resolusi 480P
+\n\u2022  Video tidak dibatasi oleh Youtube (baca ketentuan Youtube kenapa video dapat dibatasi oleh youtube)
+\n\u2022  Spesifikasi lain mungkin akan ditambahkan</string>
+    <string name="faq_question_7">7. Video saya ditolak oleh IDTUBER, apa yang harus saya lakukan ?</string>
+    <string name="faq_answer_7">Tim kami berarti menemukan satu atau lebih dari hal diatas di video kamu, oleh karena itu kami tidak memberikan izin terhadap video kamu. Kami belum membuka fasilitas re-submit dimana kamu bisa melakukan submit video ulang untuk di kurasi.</string>
+    <string name="faq_question_8">8. Tapi saya yakin video saya lolos kurasi.</string>
+    <string name="faq_answer_8">Kami sebisa mungkin objektif dalam menilai video, untuk minimal kualitas resolusi, kami akan melihat dari minimal kualitas yang disediakan oleh video. Untuk hal apakah pengupload merupakan kreator asli atau kreator merupakan orang Indonesia, kami akan berusaha keras untuk memverifikasi hal tersebut.</string>
+    <string name="faq_question_9">9. Saya melihat iklan pada video yang saya tonton, apakah itu milik IDTUBER ?</string>
+    <string name="faq_answer_9">Bukan, iklan yang muncul pada video merupakan iklan dari pemilik video tersebut. Iklan tersebut membantu kreator untuk meneruskan hobinya. IDTUBER tidak mengambil keuntungan dari iklan yang ditayangkan.</string>
+    <string name="faq_question_10">10. Saya ingin membantu IDTUBER, apa yang bisa saya lakukan ?</string>
+    <string name="faq_answer_10">Kami merupakan tim kecil yang memiliki hobi yang sama, namun kami hanya manusia biasa yang bisa melakukan kesalahan dan kami akan terus belajar. Kamu bisa membantu melaporkan jika ada hal yang tidak beres seperti munculnya video yang melanggar salah satu dari ketentuan video diatas.</string>
+    <string name="faq_question_11">11. Saya melihat video bagus di Youtube dan buatan asli Indonesia, namun saya tidak melihatnya di IDTUBER.</string>
+    <string name="faq_answer_11">Beritahu kreator video tersebut untuk bergabung bersama IDTUBER, kami akan sangat berterima kasih atas bantuan kamu.</string>
 
-Ne eripuit propriae mea, mei an animal aliquip, sea postea quidam verterem ei. Homero similique instructior has at. Pri purto admodum mnesarchum eu. Mazim prompta scaevola in cum, ad mutat velit pri, ad est apeirian omittantur. Iriure reformidans ut vel, errem laoreet ei mel. Pri autem mentitum in. Vel te meis ferri tacimates, delenit fastidii urbanitas cu ius.
 
-Nam harum audiam at, sea ut velit fabellas vivendum. Cu ius quando propriae. Eum ad sumo mucius, et pro aliquid eleifend perpetua. Tacimates scriptorem ut pro, his id epicurei salutatus sententiae, qui ne dolorum indoctum gubergren.
+    <string name="tnc_title">Syarat dan Ketentuan</string>
+    <string name="tnc_subtitle">Untuk kenyamanan menggunakan layanan IDTUBER, kami berharap kamu membaca syarat dan ketentuan berikut</string>
+    <string name="tnc_title_1">Ketentuan Pengguna</string>
+    <string name="tnc_desc_1">\u2022  Dengan bergabung di website IDTUBER atau produk, software, data feeds, dan services IDTUBER yang disediakan melalui website IDTUBER, anda telah menyetujui "Syarat dan Ketentuan" IDTUBER. Jika anda tidak menyetujui peraturan yang telah ditentukan, maka diharapkan untuk tidak menggunakan layanan yang disediakan oleh IDTUBER.
+\n\u2022  Kebijakan IDTUBER dapat berubah sewaktu - waktu tanpa ada pemberitahuan terlebih dahulu.
+\n\u2022  Tidak mengubah atau memodifikasi bagian apapun dari IDTUBER.
+\n\u2022  Tidak melakukan kegiatan yang merugikan IDTUBER.
+\n\u2022  Tidak menggunakan IDTUBER untuk kepentingan lain tanpa izin tertulis dari IDTUBER.
+\n\u2022  Indotuber berhak untuk menghentikan setiap aspek dari Layanan setiap saat.
+\n\u2022  IDTUBER akan menghentikan akses pengguna ke Layanan jika, telah terdeteksi, pengguna bertekad untuk melakukan pelanggaran berulang kali.</string>
 
-Usu impetus habemus cu. Quo no sale ancillae, ex eum oporteat definitiones. Has eu assum tempor, altera maiorum sit at, vim enim dicit populo an. Case philosophia no mei. Quas voluptatibus ne mel, eum paulo laboramus argumentum ad, at sit porro elaboraret. In vim electram splendide elaboraret, ne vix simul timeam, unum facilis ne sit. Eum ea commodo tibique.</string>
+    <string name="tnc_title_2">Ketentuan Layanan</string>
+    <string name="tnc_desc_2">\u2022  Syarat dan Ketentuan ini berlaku untuk semua pengguna IDTUBER, termasuk pengguna yang berkontribusi pada konten yang terdapat pada IDTUBER. Konten tersebut termasuk tulisan, software, scripts, gambar, suara, music, video, campuran audiovisual, interactive features dan materi lainnya yang mungkin anda lihat, akses, atau yang anda tampilkan pada IDTUBER.
+\n\u2022  Layanan IDTUBER dapat mengandung tautan menuju website pihak ketiga yang bukan milik dan dikendalikan oleh IDTUBER. IDTUBER tidak memiliki kendali, dan tidak bertanggung jawab atas konten atau praktik dari situs pihak ketiga.</string>
+
+    <string name="tnc_title_3">Ketentuan Akun</string>
+    <string name="tnc_desc_3">\u2022  Untuk melihat beberapa fitur pada layanan kami, anda harus membuat akun IDTUBER. Anda tidak diperbolehkan untuk menggunakan akun orang lain. Ketika membuat akun , anda harus memberikan data yang sebenarnya.
+\n\u2022  Anda bertanggung jawab atas semua aktivitas akun anda, dan harus menyimpan sandi akun anda dengan aman. Anda dapat menghubungi IDTUBER secepatnya jika terjadi pembobolan atau penggunaan tidak sah terhadap akun anda.</string>
+
+    <string name="tnc_title_4">Ketentuan Akun</string>
+    <string name="tnc_desc_4">\u2022  Video tidak boleh berisi SARA, Pornografi dan atau konten negatif lainnya yang dapat menimbulkan keresahan. Video akan melalui tahap kurasi, dimana hanya Video yang lolos kurasi yang akan kami tampilkan pada IDTUBER.
+\n\u2022  Video akan kami nyatakan lolos kurasi apabila memenuhi semua kriteria berikut :
+\n\u2022  Tidak mengandung unsur SARA, Pornografi dan atau yang menyebabkan terpecahnya persatuan
+\n      \u25E6  Video merupakan asli karya anak bangsa atau mayoritas menggunakan bahasa Indonesia
+\n      \u25E6  Video tersebut merupakan pemilik asli dari video tersebut
+\n      \u25E6  Video memiliki minimal kualitas resolusi 480P
+\n      \u25E6  Video tidak dibatasi oleh Youtube (baca ketentuan Youtube kenapa video dapat dibatasi oleh Youtube)
+\n\u2022  Anda bertanggung jawab atas video yang dimasukkan ke dalam IDTUBER. IDTUBER berhak untuk berhenti menampilkan video pada website jika ternyata Anda terbukti bukan pemilik asli konten video tersebut, mengandung SARA dan atau bermuatan negatif.
+\n\u2022  Anda berhak menayangkan iklan pada video Youtube Anda dan IDTUBER tidak menarik biaya dari penghasilan iklan Video Anda.
+\n\u2022  Dengan memasukkan video anda ke dalam IDTUBER, maka IDTUBER berhak untuk menyimpan judul, deskripsi, Youtube video ID, gambar thumbnail, nama channel, channel ID dan Playlist ID untuk kepentingan tampilan, analisa dan kemudahan penggunaan layanan IDTUBER.
+\n\u2022  Hak Kekayaan Intelektual tetap milik Anda. Anda berhak untuk berhenti menayangkan video Anda pada layanan IDTUBER.</string>
+
+    <string name="tnc_title_5">\u2022  Ketentuan Pihak Ke 3</string>
+    <string name="tnc_desc_5">IDTUBER menggunakan layanan Youtube sebagai media penyimpanan video. Untuk ketentuan upload video kepada youtube, silahkan baca kebijakan yang disediakan oleh Youtube.
+\n\u2022  IDTUBER menggunakan layanan penyimpanan gambar oleh Cloudinary. Untuk ketentuan upload gambar kepada Cloudinary, silahkan baca kebijakan yang disediakan oleh Cloudinary.
+\n\u2022  IDTUBER menggunakan Google Analytic sebagai media analisa data pengguna. Silahkan baca kebijakan Google Analytic untuk mengetahui data pribadi yang disimpan.</string>
+
+
+
+
+
 </resources>

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +33,9 @@ import com.project.indotuber.event.HideSpinningLoadingEvent;
 import com.project.indotuber.event.ShowSpinningLoadingEvent;
 import com.project.indotuber.fonts.CustomTypefaceSpan;
 import com.project.indotuber.singleton.InterfaceManager;
+import com.project.indotuber.viewcontroller.mainView.FAQPageFragment;
 import com.project.indotuber.viewcontroller.mainView.MainPageFragment;
+import com.project.indotuber.viewcontroller.mainView.TNCPageFragment;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     Context ctx;
     MainPageFragment mainPageFragment;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +96,9 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
-
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Menu m = navigationView.getMenu();
+        navigationView.getMenu().getItem(0).setChecked(true);
         for (int i=0;i<m.size();i++) {
             MenuItem mi = m.getItem(i);
 
@@ -120,8 +125,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem menuItem) {
-        return false;
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            fm.beginTransaction()
+                    .replace(R.id.mainContainer,new MainPageFragment())
+                    .commitAllowingStateLoss();
+
+        }else if (id == R.id.nav_faq) {
+            fm.beginTransaction()
+                    .replace(R.id.mainContainer,new FAQPageFragment())
+                    .commitAllowingStateLoss();
+        }
+        else if (id == R.id.nav_tnc) {
+            fm.beginTransaction()
+                    .replace(R.id.mainContainer,new TNCPageFragment())
+                    .commitAllowingStateLoss();
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     public void generateKeyhash(){
@@ -155,4 +178,15 @@ public class MainActivity extends AppCompatActivity
         mi.setTitle(mNewTitle);
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+            finish();
+        }
+    }
 }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="#f5f5f5"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.project.indotuber.fonts.MontserratBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tnc_title"
+                android:textColor="#555555"
+                android:textSize="18sp"/>
+            <com.project.indotuber.fonts.MontserratBoldTextView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tnc_subtitle"
+                android:textSize="16sp"
+                android:textColor="#9d9d9d"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <com.project.indotuber.fonts.MontserratBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_title_1"/>
+                <com.project.indotuber.fonts.UbuntuRegulerTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_desc_1" />
+                <com.project.indotuber.fonts.MontserratBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_title_2"/>
+                <com.project.indotuber.fonts.UbuntuRegulerTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_desc_2" />
+                <com.project.indotuber.fonts.MontserratBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_title_3"/>
+                <com.project.indotuber.fonts.UbuntuRegulerTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_desc_3" />
+                <com.project.indotuber.fonts.MontserratBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_title_4"/>
+                <com.project.indotuber.fonts.UbuntuRegulerTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_desc_4" />
+                <com.project.indotuber.fonts.MontserratBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_title_5"/>
+                <com.project.indotuber.fonts.UbuntuRegulerTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#555555"
+                    android:text="@string/tnc_desc_5" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

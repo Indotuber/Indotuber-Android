@@ -5,15 +5,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/idtuber_icon"
             android:title="Home" />
         <item
             android:id="@+id/nav_faq"
-            android:icon="@drawable/idtuber_icon"
             android:title="FAQ" />
         <item
             android:id="@+id/nav_tnc"
-            android:icon="@drawable/idtuber_icon"
             android:title="Syarat dan Ketentuan" />
 
 
