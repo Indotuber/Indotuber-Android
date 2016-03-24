@@ -56,12 +56,16 @@ public  class MainPageFragment extends Fragment {
     LinearLayoutManager llm;
     OtherVideoCardAdapter adapter;
     ScrollView scrollView;
-
+    String videoIdFromDeepLink;
     public MainPageFragment(){
 
     }
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            videoIdFromDeepLink = bundle.getString("videoId");
+        }
     }
 
     // Inflate the view for the fragment based on layout XML
@@ -149,7 +153,11 @@ public  class MainPageFragment extends Fragment {
                     youTubePlayer = player;
                     player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
                     youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
-                    ServerManager.getInstance().getRandomVideo();
+                    if (videoIdFromDeepLink != null) {
+                        ServerManager.getInstance().getRandomVideoByCode(videoIdFromDeepLink);
+                    } else {
+                        ServerManager.getInstance().getRandomVideo();
+                    }
                 }
             }
 

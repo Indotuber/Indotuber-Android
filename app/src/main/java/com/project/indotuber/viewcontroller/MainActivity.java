@@ -1,11 +1,13 @@
 package com.project.indotuber.viewcontroller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -34,6 +36,7 @@ import com.project.indotuber.viewcontroller.mainView.MainPageFragment;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -45,16 +48,35 @@ public class MainActivity extends AppCompatActivity
     FrameLayout rootFrameLayout;
     Toolbar toolbar;
     Context ctx;
+    MainPageFragment mainPageFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Uri data = getIntent().getData();
+        fm = getSupportFragmentManager();
+        mainPageFragment = new MainPageFragment();
         setContentView(R.layout.activity_main);
+        if(data !=null) {
+            String scheme = data.getScheme();
+            String host = data.getHost();
+            if(host.equalsIgnoreCase("www.idtuber.com") || host.equalsIgnoreCase("idtuber.com") ) {
+                List<String> params = data.getPathSegments();
+                String first = params.get(0);
+                if (first.equalsIgnoreCase("watch")) {
+                    String videoId = params.get(1);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("videoId", videoId);
+                    mainPageFragment.setArguments(bundle);
+                }
+            }
+        }
+
+        fm.beginTransaction()
+                .replace(R.id.mainContainer,mainPageFragment)
+                .commitAllowingStateLoss();
+
         rootFrameLayout = (FrameLayout)findViewById(R.id.rootMainFrameLayout);
         ctx = this;
-        fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .replace(R.id.mainContainer,new MainPageFragment())
-                .commitAllowingStateLoss();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -66,7 +88,6 @@ public class MainActivity extends AppCompatActivity
             EventBus.getDefault().register(this);
         }
         setSupportActionBar(toolbar);
-        fm = getSupportFragmentManager();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
