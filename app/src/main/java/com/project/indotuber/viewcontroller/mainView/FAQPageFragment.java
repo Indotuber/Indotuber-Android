@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.project.indotuber.R;
+import com.project.indotuber.singleton.AppController;
 
 /**
  * Created by admin on 3/25/16.
@@ -18,7 +19,11 @@ public class FAQPageFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_faq_page, container, false);
         return view;
     }
-
+    public void onResume() {
+        super.onResume();
+        // Tracking the screen view
+        AppController.getInstance().trackScreenView("FAQ Page Fragment");
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

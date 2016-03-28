@@ -20,6 +20,8 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
@@ -44,7 +46,7 @@ import io.realm.Realm;
 public  class MainPageFragment extends Fragment {
     Realm realm;
     Video currentVideo;
-
+    private Tracker mTracker;
     CircleImageView creatorCircleImageView;
     MontserratBoldTextView creatorName, videoTitle;
     UbuntuRegulerTextView videoDescriptionTextView;
@@ -95,6 +97,13 @@ public  class MainPageFragment extends Fragment {
 
 
         return view;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Tracking the screen view
+        AppController.getInstance().trackScreenView("Main Fragment");
     }
 
     @Override
@@ -174,6 +183,7 @@ public  class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ServerManager.getInstance().getRandomVideo();
+                AppController.getInstance().trackEvent("Main Fragment","Button Tapped", "Next Button Tapped");
             }
         });
 
@@ -195,6 +205,8 @@ public  class MainPageFragment extends Fragment {
                 else {
                     Toast.makeText(getActivity(), "No app found on your phone which can perform this action", Toast.LENGTH_SHORT).show();
                 }
+
+                AppController.getInstance().trackEvent("Main Fragment","Button Tapped", "Share Button Tapped");
             }
         });
 

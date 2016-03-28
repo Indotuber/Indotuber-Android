@@ -32,6 +32,7 @@ import com.project.indotuber.R;
 import com.project.indotuber.event.HideSpinningLoadingEvent;
 import com.project.indotuber.event.ShowSpinningLoadingEvent;
 import com.project.indotuber.fonts.CustomTypefaceSpan;
+import com.project.indotuber.singleton.AppController;
 import com.project.indotuber.singleton.InterfaceManager;
 import com.project.indotuber.viewcontroller.mainView.FAQPageFragment;
 import com.project.indotuber.viewcontroller.mainView.MainPageFragment;
