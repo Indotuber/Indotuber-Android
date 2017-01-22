@@ -8,13 +8,13 @@ import android.content.SharedPreferences;
  * Created by yoasfs on 8/3/15.
  */
 public class SettingsManager {
-    private static SharedPreferences PREF=null;
-    private static SharedPreferences.Editor PREF_EDITOR=null;
+    private static SharedPreferences PREF = null;
+    private static SharedPreferences.Editor PREF_EDITOR = null;
     private static SettingsManager SETTINGSMANAGER = null;
 
 
     public static SettingsManager getInstance() {
-        if(SETTINGSMANAGER==null){
+        if (SETTINGSMANAGER == null) {
             PREF = AppController.getAppContext().getSharedPreferences("com.project.indotuber", Context.MODE_PRIVATE);
             PREF_EDITOR = PREF.edit();
             SETTINGSMANAGER = new SettingsManager();
@@ -23,12 +23,13 @@ public class SettingsManager {
         return SETTINGSMANAGER;
     }
 
-    public SettingsManager(){
+    public SettingsManager() {
     }
 
     public void setStr(String key, String value) {
         PREF_EDITOR.putString(key, value).commit();
     }
+
     public String getStr(String key) {
         return PREF.getString(key, "");
     }

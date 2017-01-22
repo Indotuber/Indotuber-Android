@@ -6,12 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.project.indotuber.R;
@@ -28,14 +24,17 @@ import io.realm.RealmList;
 public class OtherVideoCardAdapter extends RecyclerView.Adapter<OtherVideoCardAdapter.Holder> {
     Context ctx;
     RealmList<OtherVideo> otherVideoRealmList = new RealmList<>();
-    public OtherVideoCardAdapter(Context ctx){
+
+    public OtherVideoCardAdapter(Context ctx) {
         this.ctx = ctx;
     }
-    public void updateAdapter(RealmList<OtherVideo> otherVideos){
+
+    public void updateAdapter(RealmList<OtherVideo> otherVideos) {
         this.otherVideoRealmList = otherVideos;
         notifyDataSetChanged();
     }
-    public void reloadData(){
+
+    public void reloadData() {
 //        notifyDataSetChanged();
     }
 
@@ -71,16 +70,18 @@ public class OtherVideoCardAdapter extends RecyclerView.Adapter<OtherVideoCardAd
         MontserratBoldTextView otherVideoCreatorName;
         UbuntuRegulerTextView otherVideoTitle;
         LinearLayout layout;
+
         public Holder(View itemView) {
             super(itemView);
-            cardView = (CardView)itemView.findViewById(R.id.card_view);
-            layout = (LinearLayout)itemView.findViewById(R.id.otherVideoCard_layout);
-            otherVideoThumbnail = (ImageView)itemView.findViewById(R.id.otherVideoCard_videoThumbnail);
-            otherVideoCreatorName = (MontserratBoldTextView)itemView.findViewById(R.id.otherVideoCard_videoChannelName);
-            otherVideoTitle = (UbuntuRegulerTextView)itemView.findViewById(R.id.otherVideoCard_videoTitle);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
+            layout = (LinearLayout) itemView.findViewById(R.id.otherVideoCard_layout);
+            otherVideoThumbnail = (ImageView) itemView.findViewById(R.id.otherVideoCard_videoThumbnail);
+            otherVideoCreatorName = (MontserratBoldTextView) itemView.findViewById(R.id.otherVideoCard_videoChannelName);
+            otherVideoTitle = (UbuntuRegulerTextView) itemView.findViewById(R.id.otherVideoCard_videoTitle);
         }
 
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);

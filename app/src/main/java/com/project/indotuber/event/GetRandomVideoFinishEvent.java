@@ -8,7 +8,8 @@ import com.project.indotuber.model.response.VideoResponse;
 public class GetRandomVideoFinishEvent {
     public VideoResponse videoResponse;
     public String errMessage;
-    public GetRandomVideoFinishEvent(VideoResponse videoResponse, String errMessage){
+
+    public GetRandomVideoFinishEvent(VideoResponse videoResponse, String errMessage) {
         this.videoResponse = videoResponse;
         this.errMessage = errMessage;
     }

@@ -1,7 +1,6 @@
 package com.project.indotuber.viewcontroller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -32,7 +31,6 @@ import com.project.indotuber.R;
 import com.project.indotuber.event.HideSpinningLoadingEvent;
 import com.project.indotuber.event.ShowSpinningLoadingEvent;
 import com.project.indotuber.fonts.CustomTypefaceSpan;
-import com.project.indotuber.singleton.AppController;
 import com.project.indotuber.singleton.InterfaceManager;
 import com.project.indotuber.viewcontroller.mainView.FAQPageFragment;
 import com.project.indotuber.viewcontroller.mainView.MainPageFragment;
@@ -46,7 +44,7 @@ import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager fm;
     NavigationView navigationView;
     FrameLayout rootFrameLayout;
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     Context ctx;
     MainPageFragment mainPageFragment;
     DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +60,10 @@ public class MainActivity extends AppCompatActivity
         fm = getSupportFragmentManager();
         mainPageFragment = new MainPageFragment();
         setContentView(R.layout.activity_main);
-        if(data !=null) {
+        if (data != null) {
             String scheme = data.getScheme();
             String host = data.getHost();
-            if(host.equalsIgnoreCase("www.idtuber.com") || host.equalsIgnoreCase("idtuber.com") ) {
+            if (host.equalsIgnoreCase("www.idtuber.com") || host.equalsIgnoreCase("idtuber.com")) {
                 List<String> params = data.getPathSegments();
                 String first = params.get(0);
                 if (first.equalsIgnoreCase("watch")) {
@@ -77,10 +76,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         fm.beginTransaction()
-                .replace(R.id.mainContainer,mainPageFragment)
+                .replace(R.id.mainContainer, mainPageFragment)
                 .commitAllowingStateLoss();
 
-        rootFrameLayout = (FrameLayout)findViewById(R.id.rootMainFrameLayout);
+        rootFrameLayout = (FrameLayout) findViewById(R.id.rootMainFrameLayout);
         ctx = this;
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor("#555555"));
         }
-        if (!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         setSupportActionBar(toolbar);
@@ -100,13 +99,13 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Menu m = navigationView.getMenu();
         navigationView.getMenu().getItem(0).setChecked(true);
-        for (int i=0;i<m.size();i++) {
+        for (int i = 0; i < m.size(); i++) {
             MenuItem mi = m.getItem(i);
 
             //for aapplying a font to subMenu ...
             SubMenu subMenu = mi.getSubMenu();
-            if (subMenu!=null && subMenu.size() >0 ) {
-                for (int j=0; j <subMenu.size();j++) {
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
                     MenuItem subMenuItem = subMenu.getItem(j);
                     applyFontToMenuItem(subMenuItem);
                 }
@@ -131,24 +130,23 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fm.beginTransaction()
-                    .replace(R.id.mainContainer,new MainPageFragment())
+                    .replace(R.id.mainContainer, new MainPageFragment())
                     .commitAllowingStateLoss();
 
-        }else if (id == R.id.nav_faq) {
+        } else if (id == R.id.nav_faq) {
             fm.beginTransaction()
-                    .replace(R.id.mainContainer,new FAQPageFragment())
+                    .replace(R.id.mainContainer, new FAQPageFragment())
                     .commitAllowingStateLoss();
-        }
-        else if (id == R.id.nav_tnc) {
+        } else if (id == R.id.nav_tnc) {
             fm.beginTransaction()
-                    .replace(R.id.mainContainer,new TNCPageFragment())
+                    .replace(R.id.mainContainer, new TNCPageFragment())
                     .commitAllowingStateLoss();
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void generateKeyhash(){
+    public void generateKeyhash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
                     "com.project.indotuber",
@@ -164,18 +162,19 @@ public class MainActivity extends AppCompatActivity
 
         }
     }
-    public void onEvent(ShowSpinningLoadingEvent event){
-        InterfaceManager.sharedInstance().showLoading(rootFrameLayout,ctx);
+
+    public void onEvent(ShowSpinningLoadingEvent event) {
+        InterfaceManager.sharedInstance().showLoading(rootFrameLayout, ctx);
     }
 
-    public void onEvent(HideSpinningLoadingEvent event){
+    public void onEvent(HideSpinningLoadingEvent event) {
         InterfaceManager.sharedInstance().hideLoading();
     }
 
     private void applyFontToMenuItem(MenuItem mi) {
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Regular.ttf");
         SpannableString mNewTitle = new SpannableString(mi.getTitle());
-        mNewTitle.setSpan(new CustomTypefaceSpan("" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         mi.setTitle(mNewTitle);
     }
 
@@ -184,8 +183,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
             finish();
         }

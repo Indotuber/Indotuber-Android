@@ -10,15 +10,16 @@ import com.project.indotuber.R;
 import com.project.indotuber.singleton.AppController;
 
 /**
- * Created by admin on 3/25/16.
+ * Created by yoasfs on 3/25/16.
  */
-public class TNCPageFragment extends Fragment{
+public class TNCPageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tnc_page, container, false);
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();

@@ -6,11 +6,11 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * Created by dss-13 on 12/8/15.
+ * Created by yoasfs on 12/8/15.
  */
 public class MontserratBoldTextView extends TextView {
-    public MontserratBoldTextView(Context ctx, AttributeSet attributeSet){
-        super(ctx,attributeSet);
+    public MontserratBoldTextView(Context ctx, AttributeSet attributeSet) {
+        super(ctx, attributeSet);
         this.setTypeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/Montserrat-Bold.ttf"));
     }
 }

@@ -5,9 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -19,7 +18,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.project.indotuber.R;
 
@@ -31,14 +29,16 @@ public class InterfaceManager {
     View loadingFrameLayout;
     EditText invisibleEditText;
     boolean isErrMsgShown = false;
-    public static InterfaceManager sharedInstance(){
+
+    public static InterfaceManager sharedInstance() {
         return INTERFACEMANAGER;
     }
-    public InterfaceManager(){
+
+    public InterfaceManager() {
 
     }
 
-//    public  void showErrorMessage(Context ctx, String errMsg){
+    //    public  void showErrorMessage(Context ctx, String errMsg){
 //        if(!isErrMsgShown){
 //            isErrMsgShown = true;
 //            AlertDialog.Builder alrt = new AlertDialog.Builder(ctx);
@@ -52,22 +52,30 @@ public class InterfaceManager {
 //            alrt.show();
 //        }
 //    }
+    public boolean isOnline() {
+        try {
+            ConnectivityManager cm = (ConnectivityManager) AppController.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
-    public void showSuccessMessage(Context ctx, String successMsg){
+    public void showSuccessMessage(Context ctx, String successMsg) {
         AlertDialog.Builder alrt = new AlertDialog.Builder(ctx);
         alrt.setTitle("Train With Tanya").setMessage(successMsg);
-        alrt.setPositiveButton("OK",null);
+        alrt.setPositiveButton("OK", null);
         alrt.show();
     }
 
-    public void showSuccessMessageWithBlock(Context ctx, String successMsg){
+    public void showSuccessMessageWithBlock(Context ctx, String successMsg) {
         AlertDialog.Builder alrt = new AlertDialog.Builder(ctx);
         alrt.setTitle("SureSell").setMessage(successMsg);
         alrt.setPositiveButton("OK", null);
         alrt.show();
     }
 
-//    public void showLoadingWithoutLostFocus(FrameLayout rootFrameLayout,Context context){
+    //    public void showLoadingWithoutLostFocus(FrameLayout rootFrameLayout,Context context){
 //        LayoutInflater inflater = (LayoutInflater)   context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        loadingFrameLayout = inflater.inflate(R.layout.item_loading, null);
 //        ProgressBar progressBar = (ProgressBar)loadingFrameLayout.findViewById(R.id.progressBar);
@@ -80,11 +88,11 @@ public class InterfaceManager {
 //        invisibleButton.setVisibility(View.GONE);
 //    }
 //
-    public void showLoading(FrameLayout rootFrameLayout,Context context){
-        LayoutInflater inflater = (LayoutInflater)   context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public void showLoading(FrameLayout rootFrameLayout, Context context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         loadingFrameLayout = inflater.inflate(R.layout.item_loading, null);
-        ImageView spinningImageView = (ImageView)loadingFrameLayout.findViewById(R.id.loading_spinningIcon);
-        RotateAnimation rotateAnimation = new RotateAnimation(0,359, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        ImageView spinningImageView = (ImageView) loadingFrameLayout.findViewById(R.id.loading_spinningIcon);
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setRepeatCount(Animation.INFINITE);
         rotateAnimation.setDuration(1000);
         spinningImageView.setAnimation(rotateAnimation);
@@ -95,65 +103,57 @@ public class InterfaceManager {
         loadingFrameLayout.setEnabled(true);
     }
 
-    public void hideLoading( ){
-        if(loadingFrameLayout!=null){
+    public void hideLoading() {
+        if (loadingFrameLayout != null) {
             loadingFrameLayout.setVisibility(View.GONE);
             loadingFrameLayout.setEnabled(false);
         }
     }
 
     //size converter
-    public int dpToPx(Context ctx, int dp)
-    {
+    public int dpToPx(Context ctx, int dp) {
         DisplayMetrics displayMetrics = ctx.getResources().getDisplayMetrics();
         int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
         return px;
     }
 
-    public int pxToDp(Context ctx, int px)
-    {
+    public int pxToDp(Context ctx, int px) {
         DisplayMetrics displayMetrics = ctx.getResources().getDisplayMetrics();
         int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
         return dp;
 
     }
 
-    public int getDeviceWidth(Activity activity){
+    public int getDeviceWidth(Activity activity) {
         final int version = Build.VERSION.SDK_INT;
         final int width;
         Display display = activity.getWindowManager().getDefaultDisplay();
-        if (version >= 13)
-        {
+        if (version >= 13) {
             Point size = new Point();
             display.getSize(size);
             width = size.x;
-        }
-        else
-        {
+        } else {
             width = display.getWidth();
         }
         return width;
     }
 
-    public void openURLWithNativeBrowser(String url,Activity activity){
+    public void openURLWithNativeBrowser(String url, Activity activity) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        try
-        {
+        try {
             activity.startActivity(intent);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void sendEmailWithNativeMailComposer(String recipient ,String subject,String text,String cc, Activity activity){
-        Intent intent=new Intent(Intent.ACTION_SEND);
-        String[] recipients={recipient};
+    public void sendEmailWithNativeMailComposer(String recipient, String subject, String text, String cc, Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        String[] recipients = {recipient};
         intent.putExtra(Intent.EXTRA_EMAIL, recipients);
-        intent.putExtra(Intent.EXTRA_SUBJECT,subject);
-        intent.putExtra(Intent.EXTRA_TEXT,"Android "+ Build.VERSION.RELEASE+", Device "+getDeviceName()+"\n"+text+"\n\n");
-        intent.putExtra(Intent.EXTRA_CC,cc);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, "Android " + Build.VERSION.RELEASE + ", Device " + getDeviceName() + "\n" + text + "\n\n");
+        intent.putExtra(Intent.EXTRA_CC, cc);
         intent.setType("text/html");
         activity.startActivity(Intent.createChooser(intent, "Send mail"));
     }
@@ -181,22 +181,20 @@ public class InterfaceManager {
         }
     }
 
-    public void showErrorMessage(Context ctx, String errorMessage){
-        if(!isErrMsgShown){
-            isErrMsgShown=true;
+    public void showErrorMessage(Context ctx, String errorMessage) {
+        if (!isErrMsgShown) {
+            isErrMsgShown = true;
             AlertDialog.Builder alrt = new AlertDialog.Builder(ctx);
             alrt.setTitle("Message").setMessage(errorMessage);
             alrt.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    isErrMsgShown=false;
+                    isErrMsgShown = false;
                 }
             });
             alrt.show();
         }
     }
-
-
 
 
 }

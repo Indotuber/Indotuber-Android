@@ -1,7 +1,6 @@
 package com.project.indotuber.singleton;
 
 
-import android.location.Location;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -9,22 +8,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.project.indotuber.event.GetRandomVideoFinishEvent;
 import com.project.indotuber.event.ShowSpinningLoadingEvent;
-import com.project.indotuber.model.Video;
 import com.project.indotuber.model.response.VideoResponse;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -34,10 +27,11 @@ import de.greenrobot.event.EventBus;
 public class ServerManager {
     private static ServerManager SERVERMANAGER = null;
     boolean isSuccess = false;
-//    String url = "http://10.0.1.18:8080/api/";//ko mike
+    //    String url = "http://10.0.1.18:8080/api/";//ko mike
     String url = "https://idtuber.com/api/";
     private RequestQueue mRequestQueue;
     public static final String TAG = ServerManager.class.getSimpleName();
+
     public static ServerManager getInstance() {
         if (SERVERMANAGER == null) {
             SERVERMANAGER = new ServerManager();
@@ -46,20 +40,20 @@ public class ServerManager {
         return SERVERMANAGER;
     }
 
-    public ServerManager(){
+    public ServerManager() {
 
     }
 
-    public String getURL(){
+    public String getURL() {
         return url;
     }
 
-    public String getErrorMessage(VolleyError error){
+    public String getErrorMessage(VolleyError error) {
         String body = "Unknown Error";
         String statusCode = String.valueOf(error.networkResponse.statusCode);
-        if(error.networkResponse.data!=null) {
+        if (error.networkResponse.data != null) {
             try {
-                body = new String(error.networkResponse.data,"UTF-8");
+                body = new String(error.networkResponse.data, "UTF-8");
                 JSONObject jsonObject = new JSONObject(body);
                 body = jsonObject.getString("message");
             } catch (UnsupportedEncodingException e) {
@@ -97,12 +91,17 @@ public class ServerManager {
         }
     }
 
-    public void getRandomVideo(){
+    public void getRandomVideo() {
         EventBus.getDefault().post(new ShowSpinningLoadingEvent());
+        if (!InterfaceManager.sharedInstance().isOnline()) {
+            EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, "Mohon periksa koneksi internet anda"));
+            return;
+        }
+        JSONObject params = new JSONObject();
         Calendar c = Calendar.getInstance();
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                ServerManager.getInstance().getURL() + "get-random-video?"+c.getTimeInMillis(),
+                ServerManager.getInstance().getURL() + "get-random-video?" + c.getTimeInMillis(), params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -113,26 +112,32 @@ public class ServerManager {
                             } else {
                                 EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, response.getString("error")));
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, e.getLocalizedMessage()));
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null,error.getMessage()));
+                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, error.getMessage()));
             }
         });
-        addToRequestQueue(request,"getRandomVideo");
+        addToRequestQueue(request, "getRandomVideo");
 
     }
 
-    public void getRandomVideoByCode(String videoId){
+    public void getRandomVideoByCode(String videoId) {
         EventBus.getDefault().post(new ShowSpinningLoadingEvent());
+        if (!InterfaceManager.sharedInstance().isOnline()) {
+            EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, "Mohon periksa koneksi internet anda"));
+            return;
+        }
+
+        JSONObject params = new JSONObject();
         Calendar c = Calendar.getInstance();
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                ServerManager.getInstance().getURL() + "get-random-video?videoId="+videoId,
+                ServerManager.getInstance().getURL() + "get-random-video?videoId=" + videoId, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -143,17 +148,17 @@ public class ServerManager {
                             } else {
                                 EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, response.getString("error")));
                             }
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, e.getLocalizedMessage()));
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null,error.getMessage()));
+                EventBus.getDefault().post(new GetRandomVideoFinishEvent(null, error.getMessage()));
             }
         });
-        addToRequestQueue(request,"getRandomVideoById");
+        addToRequestQueue(request, "getRandomVideoById");
 
     }
 

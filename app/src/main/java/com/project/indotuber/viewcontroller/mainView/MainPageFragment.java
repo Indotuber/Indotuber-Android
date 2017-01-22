@@ -15,12 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -43,7 +41,7 @@ import io.realm.Realm;
 /**
  * Created by yoasfs on 2/6/16.
  */
-public  class MainPageFragment extends Fragment {
+public class MainPageFragment extends Fragment {
     Realm realm;
     Video currentVideo;
     private Tracker mTracker;
@@ -51,7 +49,7 @@ public  class MainPageFragment extends Fragment {
     MontserratBoldTextView creatorName, videoTitle;
     UbuntuRegulerTextView videoDescriptionTextView;
     YouTubePlayerSupportFragment youTubePlayerFragment;
-    Button nextFrameLayoutButton,shareFrameLayoutButton;
+    Button nextFrameLayoutButton, shareFrameLayoutButton;
     YouTubePlayer youTubePlayer;
     String shareUrl;
     RecyclerView recyclerView;
@@ -59,13 +57,15 @@ public  class MainPageFragment extends Fragment {
     OtherVideoCardAdapter adapter;
     ScrollView scrollView;
     String videoIdFromDeepLink;
-    public MainPageFragment(){
+
+    public MainPageFragment() {
 
     }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        if(bundle!=null) {
+        if (bundle != null) {
             videoIdFromDeepLink = bundle.getString("videoId");
         }
     }
@@ -74,19 +74,19 @@ public  class MainPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        if(!EventBus.getDefault().isRegistered(this)) {
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         realm = AppController.getInstance().getRealm();
         adapter = new OtherVideoCardAdapter(getActivity());
-        scrollView = (ScrollView)view.findViewById(R.id.mainActivity_scrollView);
-        recyclerView = (RecyclerView)view.findViewById(R.id.mainActivity_otherVideoRecyclerView);
-        nextFrameLayoutButton = (Button)view.findViewById(R.id.mainActivity_nextButton);
-        videoTitle = (MontserratBoldTextView)view.findViewById(R.id.mainActivity_videoTitle);
-        shareFrameLayoutButton = (Button)view.findViewById(R.id.mainActivity_shareButton);
-        creatorCircleImageView = (CircleImageView)view.findViewById(R.id.profile_image);
-        creatorName = (MontserratBoldTextView)view.findViewById(R.id.mainActivity_creatorTextView);
-        videoDescriptionTextView = (UbuntuRegulerTextView)view.findViewById(R.id.mainActivity_videoDescriptionTextView);
+        scrollView = (ScrollView) view.findViewById(R.id.mainActivity_scrollView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.mainActivity_otherVideoRecyclerView);
+        nextFrameLayoutButton = (Button) view.findViewById(R.id.mainActivity_nextButton);
+        videoTitle = (MontserratBoldTextView) view.findViewById(R.id.mainActivity_videoTitle);
+        shareFrameLayoutButton = (Button) view.findViewById(R.id.mainActivity_shareButton);
+        creatorCircleImageView = (CircleImageView) view.findViewById(R.id.profile_image);
+        creatorName = (MontserratBoldTextView) view.findViewById(R.id.mainActivity_creatorTextView);
+        videoDescriptionTextView = (UbuntuRegulerTextView) view.findViewById(R.id.mainActivity_videoDescriptionTextView);
         // YouTubeフラグメントインスタンスを取得
         youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
         // レイアウトにYouTubeフラグメントを追加
@@ -98,6 +98,7 @@ public  class MainPageFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -119,12 +120,13 @@ public  class MainPageFragment extends Fragment {
         nextFrameLayoutButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()){
-                    case MotionEvent.ACTION_DOWN:{
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
                         v.getBackground().setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.SRC_ATOP);
                         v.invalidate();
-                        break; }
-                    case MotionEvent.ACTION_UP:{
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
                         v.getBackground().clearColorFilter();
                         v.invalidate();
                         break;
@@ -136,14 +138,14 @@ public  class MainPageFragment extends Fragment {
         shareFrameLayoutButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()){
-                    case MotionEvent.ACTION_DOWN:{
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
                         v.getBackground().setColorFilter(Color.parseColor("#555555"), PorterDuff.Mode.SRC_ATOP);
                         v.invalidate();
                         break;
 //                        shareFrameLayoutButton.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.gray_button_pressed));
                     }
-                    case MotionEvent.ACTION_UP:{
+                    case MotionEvent.ACTION_UP: {
 //                        shareFrameLayoutButton.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.pink_share));
                         v.getBackground().clearColorFilter();
                         v.invalidate();
@@ -183,7 +185,7 @@ public  class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ServerManager.getInstance().getRandomVideo();
-                AppController.getInstance().trackEvent("Main Fragment","Button Tapped", "Next Button Tapped");
+                AppController.getInstance().trackEvent("Main Fragment", "Button Tapped", "Next Button Tapped");
             }
         });
 
@@ -193,24 +195,25 @@ public  class MainPageFragment extends Fragment {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 String message = "Nonton "
-                        +currentVideo.getChannel().getChannelName()
-                        +" - "
-                        +currentVideo.getVideoTitle()
-                        +" di "
-                        +currentVideo.getVideoShareUrl();
+                        + currentVideo.getChannel().getChannelName()
+                        + " - "
+                        + currentVideo.getVideoTitle()
+                        + " di "
+                        + currentVideo.getVideoShareUrl();
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT,message );
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
                 if (sharingIntent.resolveActivity(getActivity().getPackageManager()) != null)
                     getActivity().startActivity(Intent.createChooser(sharingIntent, "Share using"));
                 else {
                     Toast.makeText(getActivity(), "No app found on your phone which can perform this action", Toast.LENGTH_SHORT).show();
                 }
 
-                AppController.getInstance().trackEvent("Main Fragment","Button Tapped", "Share Button Tapped");
+                AppController.getInstance().trackEvent("Main Fragment", "Button Tapped", "Share Button Tapped");
             }
         });
 
     }
+
     YouTubePlayer.PlayerStateChangeListener playerStateChangeListener = new YouTubePlayer.PlayerStateChangeListener() {
         @Override
         public void onLoading() {
@@ -244,13 +247,13 @@ public  class MainPageFragment extends Fragment {
     };
 
 
-    public void initView(){
-        scrollView.scrollTo(0,0);
+    public void initView() {
+        scrollView.scrollTo(0, 0);
         creatorName.setText(currentVideo.getChannel().getChannelName());
         videoTitle.setText(currentVideo.getVideoTitle());
-        if(!currentVideo.getChannel().getChannelPicUrl().equals("")) {
+        if (!currentVideo.getChannel().getChannelPicUrl().equals("")) {
             Glide.with(getActivity()).load(currentVideo.getChannel().getChannelPicUrl()).into(creatorCircleImageView);
-        }else{
+        } else {
             creatorCircleImageView.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.idtuber_icon));
         }
         videoDescriptionTextView.setText(currentVideo.getVideoDescription());
@@ -258,16 +261,17 @@ public  class MainPageFragment extends Fragment {
         recyclerView.getLayoutParams().height = (currentVideo.getOtherVideos().size() * InterfaceManager.sharedInstance().dpToPx(getActivity(), 115));
         adapter.updateAdapter(currentVideo.getOtherVideos());
     }
-    public void onEvent(GetRandomVideoFinishEvent event){
-        if(event.errMessage.equals("")){
-            EventBus.getDefault().post(new HideSpinningLoadingEvent());
+
+    public void onEvent(GetRandomVideoFinishEvent event) {
+        EventBus.getDefault().post(new HideSpinningLoadingEvent());
+        if (event.errMessage.equals("")) {
             currentVideo = event.videoResponse.getVideo();
             initView();
             Log.v("video", currentVideo.getVideoId());
             youTubePlayer.loadVideo(currentVideo.getVideoId());
             youTubePlayer.play();
-        }else {
-            Toast.makeText(getActivity(),event.errMessage,Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getActivity(), event.errMessage, Toast.LENGTH_LONG).show();
         }
     }
 }
